@@ -18,6 +18,7 @@
     <a href="http://google.com" class="fancy purple" id="google"><strong>Go To Google</strong></a>
   </div>
 
+<!--Creating table-->
     <table>
       <thead>
         <tr>
@@ -38,9 +39,11 @@
         </tr>
       </tfoot>
     </table>
+
+    <!--select option practices-->
     <label for="rock-paper-scissor">Choose one:</label>
     <select name="game" id="rock-paper-scissor">
-      <option value="">--select one of the following--</option>
+      <option value="" selected>--select one of the following--</option>
       <option value="Rock">Rock</option>
       <option value="Paper">Paper</option>
       <option value="Scissor">Scissor</option>
@@ -55,18 +58,43 @@
     <dd>scissor beats paper but loses to rock</dd>
   </dl>
   <hr>
+
+  <!--First and Last name input practice-->
   <form>
     <label for="First" and for="Last">Input your name:</label>
     <input type="text" value="First" placeholder="Input your first name here">
     <input type="text" value="Last" placeholder="Input your last name here">
     <br><br>
     <label for="email">Enter your email:</label>
-    <input type="email" id="email">
+    <input type="email" id="email" value="example@gmail.com">
     <label for="phone"> Enter your number:</label>
-    <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+    <input type="tel" id="phone" name="phone" value="111-222-333" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
     <input type="submit" value="Submit">
+    <input type="reset" value="Reset input">
     <input type="checkbox" id="checkbox">keep me login</input>
   </form>
+  <hr><br>
+
+  <!--Google interface practice-->
+  <form>
+    <label for="gogoletext">Google</label><br>
+    <input type="text">
+    <div>
+        <button>Google Search</button>
+        <button>I'm Feeling Lucky</button>
+    </div>
+</form>
+
+<!-- radios and checkboxes -->
+<section>
+    <label for="rappers"><strong>Who's the best out of the 3?</strong></label>
+  <div> <!--putting the radio selection in <div> to onlt select from that group-->
+    <input type="radio" name="rappers" value="Biggie"> Biggie
+    <input type="radio" name="rappers" value="Dre" checked> Dre
+    <input type="radio" name="rappers" value="Snoop"> Snoop
+  </div>
+  <input type="hidden" name="secret" value="Tupac is alive"> <!--Hidden input-->
+</section>
 
 
 </body>
