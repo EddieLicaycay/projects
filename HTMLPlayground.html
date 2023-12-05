@@ -9,13 +9,14 @@
 <body>
   <a href="http://example.com">Click here</a>
   <hr>
-  <div>
+  <div class="firstdiv">
     <p>Practicing Div!</p>
     <a href="https://github.com/EddieLicaycay/projects">Go to my Github</a> <br>
     <img class="img-test"src="Img/github_logo.png" alt="picture of Giithub Logo"> <br>
     <a href="https://www.google.com/">Go to Google</a><br>
     <input value="Enter your name"><br>
-    <a href="http://google.com" class="fancy purple" id="google">Go To Google</a>
+    <a href="http://google.com" class="fancy purple" id="google"><strong>Go To Google</strong></a>
+  </div>
 
     <table>
       <thead>
@@ -37,8 +38,37 @@
         </tr>
       </tfoot>
     </table>
+    <label for="rock-paper-scissor">Choose one:</label>
+    <select name="game" id="rock-paper-scissor">
+      <option value="">--select one of the following--</option>
+      <option value="Rock">Rock</option>
+      <option value="Paper">Paper</option>
+      <option value="Scissor">Scissor</option>
+    </select>
+
+  <dl>
+    <dt>Rock</dt>
+    <dd>rock beats sissor but loses to paper</dd>
+    <dt>Paper</dt>
+    <dd>paper beats rock but loses to scissor</dd>
+    <dt>Scissor</dt>
+    <dd>scissor beats paper but loses to rock</dd>
+  </dl>
+  <hr>
+  <form>
+    <label for="First" and for="Last">Input your name:</label>
+    <input type="text" value="First" placeholder="Input your first name here">
+    <input type="text" value="Last" placeholder="Input your last name here">
+    <br><br>
+    <label for="email">Enter your email:</label>
+    <input type="email" id="email">
+    <label for="phone"> Enter your number:</label>
+    <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+    <input type="submit" value="Submit">
+    <input type="checkbox" id="checkbox">keep me login</input>
+  </form>
 
 
-  </div>
 </body>
+
 </html>

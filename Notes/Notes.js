@@ -28,7 +28,36 @@ article
 aside
 footer
 div
-
-
 */
 
+/* Based on these definitions, a possible structure of a blog site could look like this:
+
+<div id="blog-articles-about-animals">
+
+  <section>
+    <h1>Articles about Turtles</h1>
+    <article>
+      <h2>Where Turtles Live</h2>
+      <p>blah blah</p>
+    </article>
+    <article>
+      <h2>What Turtles Eat</h2>
+      <p>blah blah</p>
+    </article>
+  </section>
+
+  <section>
+    <h1>Articles about Chickens</h1>
+    <article>
+      <h2>History of Chickens in USA</h2>
+      <p>blah blah</p>
+    </article>
+    <article>
+      <h2>Chickens in the Wild</h2>
+      <p>blah blah</p>
+    </article>
+  </section>
+
+</div> */
+
+// <script src="../../index.js" async></script> : don't forgot to put async at the end of script to intergrate JS
