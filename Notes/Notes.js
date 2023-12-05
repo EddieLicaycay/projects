@@ -17,3 +17,18 @@ visit the repo in your own Github account and follow the same cloning steps abov
 
 <a href="http://google.com">Go To Google</a>*/
 
+/* Structural
+Use these tags to create the overall hierarchy of the content in your page:
+
+header
+nav
+main
+section
+article
+aside
+footer
+div
+
+
+*/
+
