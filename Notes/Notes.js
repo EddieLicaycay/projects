@@ -63,4 +63,5 @@ div
 // <script src="../../index.js" async></script> : don't forgot to put async at the end of script to intergrate JS
 
 // Boolean = true or false statement
+//external CSS style input: <link rel=”stylesheet” type=”text/css” href=“Path To stylesheet.css” />
 
