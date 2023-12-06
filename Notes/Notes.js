@@ -65,3 +65,17 @@ div
 // Boolean = true or false statement
 //external CSS style input: <link rel=”stylesheet” type=”text/css” href=“Path To stylesheet.css” />
 
+/* #green {          ----- #green means to get from id="green"
+  background-color: green;
+}
+.red {               ----- .red means get from class="red"
+  width: 200px;
+  height: 200px;
+  background-color: red;
+}
+div {               
+  width: 300px;
+  height: 100px;
+  background-color: blue;
+}
+
