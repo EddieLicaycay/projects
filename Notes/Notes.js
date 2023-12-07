@@ -112,3 +112,82 @@ var original = 33.7;
 
 console.log('rounded up:', Math.ceil(original));
 console.log('rounded down:', Math.floor(original));
+
+You can also take a string version of a number, like "4", and get an actual number, like 4 a couple of ways:
+
+Wanting to "parse" an integer, using the Number.parseInt()
+Wanting to parse a float (decimal), using Number.parseFloat()
+
+// generate a random number between 1 and 10
+var randomBetween1And10 = Math.random() * (10 - 1) + 1;
+console.log('randomBetween1And10:', randomBetween1And10);
+var min = 90
+var max = 100;
+var randomBetweenMinAndMax = Math.random() * (max - min) +min;
+console.log("randomBetweenMinAndMax:", Math.floor(randomBetweenMinAndMax)); // Math.floor rounds it down to a whole number
+
+Accessing String Character
+var name = "Robert Smalls";
+var firstCharacter = name[0];
+var eighthCharacter = name[7];
+
+console.log('firstCharacter:',firstCharacter); // should log "R"
+console.log('eighthCharacter:', eighthCharacter); // should log "S"
+
+Reassignment of string function
+function reassignAString(input) {
+  // reassign the input string to the described string
+  // return the input string
+  input = "reassigned"
+  return input;
+}
+var resultString1 = reassignAString('Computer Science');
+console.log(resultString1); // logs "reassigned" to the console
+
+var resultString2 = reassignAString('Software Engineering');
+console.log('should also be "reassigned":', resultString2); // logs "reassigned" to the console
+
+Template literals are enclosed with backticks `` instead of quotation marks, like the string syntax you are likely used to.
+Template literals reduce the complication of multi-line strings. Instead of:
+"string text line 1\n" + "string text line 2";
+to output a two-lined string, a template literal would simply look like:
+`string text line 1
+string text line 2`
+You can get the length of a string using the .length property (not a method, although vaguely similar in appearance):
+var lengthOfName = "Alan Turing".length;
+console.log('lengthOfName version 1:', lengthOfName);
+to get last letter of the string = .length - 1
+
+You can get a portion of a string using the .substring() method (note -> there are other ways to do this - research the .substr() method):
+var subString = "JavaScript".substring(2, 9);
+console.log('portion of string from before index 2, up to, but not including, index 9:', subString);
+You can determine where in a string you can find a particular substring using the .indexOf() method for string:
+If the substring is not found, the call to indexOf() will return -1:
+
+Consider the case of wanting to cast (convert a value) from something other than a string into a string. You can do so by using the .toString() method:
+var num = 17;
+var stringNum = num.toString();
+console.log('stringNum:', stringNum);
+console.log('type of stringNum:', typeof stringNum);
+var bool = true;
+var stringBool = bool.toString();
+console.log('stringBool:', stringBool);
+console.log('type of stringBool:', typeof stringBool);
+
+Arithmetic Operators: The operators that allow us to code mathematical operations such as +, -, %, *
+Comparison Operators: The operators that use === , < or > , !=, <= >=
+Assignment Operators: The operators that use =  to assign values or += -=
+A falsy value is one that would evaluate to false if treated as a boolean. Falsy are the following values:
+false
+0
+"" (empty string)
+null
+undefined
+NaN (not a number)
+The rest outside the list above are evaluated truthy
+Logical AND (&&): The logical AND operator is used to evaluate the truthfulness of multiple expressions at once. It returns the falsy value first, if not; will input true
+Logical OR (||): The logical OR operator returns the first expression if it is truthy (it can be converted to true). Otherwise, it returns the second expression.
+
+
+
+
