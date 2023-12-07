@@ -188,6 +188,209 @@ The rest outside the list above are evaluated truthy
 Logical AND (&&): The logical AND operator is used to evaluate the truthfulness of multiple expressions at once. It returns the falsy value first, if not; will input true
 Logical OR (||): The logical OR operator returns the first expression if it is truthy (it can be converted to true). Otherwise, it returns the second expression.
 
+Assigning to properties: (Adding and Updating Object Properties)
+const obj = {};
+obj.x = 3;
+console.log(obj.x); // Prints 3.
+console.log(obj); // Prints { x: 3 }.
+const key = "y";
+obj[key] = 5;
+console.log(obj[key]); // Prints 5.
+console.log(obj); // Prints { x: 3, y: 5 }.
 
+
+The use of [] or .(dot) when accessing Objects
+var superman = {
+  alias: "Superman",
+  name: "Clark Kent",
+  'location': "Smallville",
+  'age in years': 50
+}
+console.log(superman.name); // => "Clark Kent"
+console.log(superman.'location') // => "SyntaxError"
+console.log(superman.location) // => "Smallville"
+console.log(superman.'age in years'); // => "Error: Unexpected String" - use console.log(superman["age in years"]) as you cannot use superman.age in years
+let worstObjectEver = {
+  22: 'fish',
+  start: 99,
+}
+// ERROR, Uncaught SyntaxError: unexpected token: numeric literal
+console.log( worstObjectEver.22 )
+// CORRECT, logs 'fish'
+console.log( worstObjectEver[22] )
+Variables can only be used in bracket notation:
+myKey = 22
+// CORRECT, logs 99 - the value of the variable 'start' is used as the key
+console.log( worstObjectEver[myKey])
+
+
+Iterating Objects with For...in Loop:
+​Iterating over an object is as simple as creating a for...in loop. By default, the for...in loop iterates over every property of an object, giving you access to each key.
+
+Below we get back to the dog object from above, to show you a couple of examples on how to access both the keys and the values of object properties with that special type of loop.
+
+let dog = {name: "Chance", breed: "German Shepherd", weight: 100};
+
+for (var key in dog){
+  console.log(key)
+}
+  /* Expected Output
+  => "name"
+  => "breed"
+  => "weight"
+
+With the above loop we are console logging the keys ("name", "breed", "weight") rather than the values associated with those keys.
+
+Below we are using bracket notation (ex. anObject[key]) to log the property values associated with each key.
+
+for (var key in dog){
+console.log(dog[key])
+}
+    Expected Output:
+    => "Chance"
+    => "German Shepherd"
+    => 100
+
+
+The in Operator
+Many times when working with objects we need to know if a property exists in the object before we can attempt to manipulate that property.
+
+An easy way to do that is by using the JS in operator.
+
+Observe the following example in JSFiddle or your IDE to gain understanding of how this operator behaves:
+
+let dog = {name: "Chance", breed: "German shepherd", weight: 100};
+
+if('age' in dog) console.log("The dog has an age");
+else console.log("The dog has NO age");
+
+let key = "breed";
+
+if(key in dog) console.log(`The dog has a ${key}`);
+else console.log(`The dog has NO ${key}`);
+
+A nested object is an object that contains objects.
+
+Below you'll see a unitedStates object, which may look strange at first. Take a moment to look over it in depth:
+
+var unitedStates = {
+  population : 331900000,
+  states : {
+    nd : {
+      capital: 'Bismark',
+      population : 774948,
+      largestCity : {
+        name: 'Fargo',
+        population : 126748
+      }
+    },
+    tx : {
+      capital : 'Austin',
+      population : 29530000,
+      largestCity : {
+        name: 'Houston',
+        population : 2326000
+      }
+    }
+  }
+}
+console.log(unitedStates.states.nd.capital); // => 'Bismark'
+Adding New Nested Properties
+When setting nested properties, you are not able to set nested properties at levels that do not exist yet.
+
+let yard = {};
+
+// ERROR, plants is undefined!
+yard.plants.trees = 'fir';
+
+// All good, plants holds a nested object instead of undefined
+yard.plants = {};
+yard.plants.trees = 'fir';
+
+for (var key in unitedStates) {
+  console.log(unitedStates[key]);
+}
+
+for (key in unitedStates){
+  for (subKey in unitedStates[key]){
+    console.log(subKey);
+  }
+}
+  /* Expected Output
+  => "nd"
+  => "tx"
+
+
+  for (key in unitedStates){
+    for (subKey in unitedStates[key]){
+      console.log(unitedStates[key][subKey]);
+    }
+  }
+    /* Expected Output
+    => > Object { capital: "Bismark", population: 774948, largestCity: Object { name: "Fargo", population: 126748 } }
+    => > Object { capital: "Austin", population: 29530000, largestCity: Object { name: "Houston", population: 2326000 } }
+
+    var unitedStates = {
+  population : 331900000,
+  states : {
+    nd : {
+      capital: 'Bismark',
+      population : 774948,
+      largestCity : {
+        name: 'Fargo',
+        population : 126748
+      }
+    },
+    tx : {
+      capital : 'Austin',
+      population : 29530000,
+      largestCity : {
+        name: 'Houston',
+        population : 2326000
+      }
+    }
+  }
+}
+/*console.log(unitedStates.states.nd.capital); // => 'Bismark'
+unitedStates.states.tx.capital = "Austin (BJJ Capital of the World!)"
+console.log(unitedStates.states.tx.capital)
+
+Accessing subkeys within subkeys of object:
+for (var key in unitedStates) {
+  console.log(unitedStates[key]);
+}
+
+for (key in unitedStates){
+  for (subKey in unitedStates[key]){
+    console.log(subKey);
+  }
+}
+  /* Expected Output
+  => "nd"
+  => "tx"
+
+for (key in unitedStates){
+  for (subKey in unitedStates[key]){
+    console.log(unitedStates[key][subKey]);
+  }
+}
+  /* Expected Output
+  => > Object { capital: "Bismark", population: 774948, largestCity: Object { name: "Fargo", population: 126748 } }
+  => > Object { capital: "Austin", population: 29530000, largestCity: Object { name: "Houston", population: 2326000 } }
+
+for(key in unitedStates) {
+  for (subKey in unitedStates[key]) {
+    console.log(unitedStates[key][subkey])
+  }
+}
+for (key in unitedStates) {
+  for (subikey in unitedStates[key][subKey]){
+    console.log(unitedStates[key][subKey][subikey])
+  }
+}
+  Expected Output:
+  Austin
+  29530000
+  { name: 'Houston', population: 2326000 }
 
 

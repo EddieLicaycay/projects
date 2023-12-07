@@ -60,4 +60,64 @@ name = "Eddie"
 let day = "Wednesday"
 console.log(greetingSender(name, day)) */
 
+//let number1 = 11;
+//let number2 = 10;
+
+/*do {
+  console.log("No other loop would execute this");
+} while (number1 > number2) {
+  number1 +=1
+  console.log(number1)
+}
+
+
+var myObject = {
+  exists: true,
+  name: "Galvanize",
+  year: 2023,
+  languages: ["JavaScript", "HTML", "CSS"],
+  myFunc: function(){
+      console.log("Object Literals are Awesome!")
+    },
+  nested: {
+      where: "I am an Object inside of an Object"
+    }
+}
+// accessing all propeties
+for (var key in myObject) {
+  console.log(myObject)
+}
+//accessing all values of that property
+for (var key in myObject) {
+  console.log(myObject[key])
+}
+
+
+var yourObject = {
+  type: 'object'
+}
+
+console.log(myObject.languages[2])
+console.log(yourObject.type)
+
+
+let dog = {name: "Chance", breed: "German Shepherd", weight: 100};
+
+for (var key in dog){
+  console.log(key)
+}
+  /* Expected Output
+  => "name"
+  => "breed"
+  => "weight"
+
+  for (var key in dog){
+    console.log(dog[key])
+  }
+    /* Expected Output
+    => "Chance"
+    => "German Shepherd"
+    => 100
+    */
+
 
