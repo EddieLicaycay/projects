@@ -32,7 +32,7 @@ var max = 100;
 var randomBetweenMinAndMax = Math.random() * (max - min) +min;
 console.log("randomBetweenMinAndMax:", Math.floor(randomBetweenMinAndMax)); */
 
-let testString = 'words';
+/* let testString = 'words';
 
 var firstCharacter = testString[0]; // accesses the first character: 'w'
 var thirdCharacter = testString[2]; // accesses the third character: 'r'
@@ -58,4 +58,6 @@ const greetingSender = (name, day) => {
 };
 name = "Eddie"
 let day = "Wednesday"
-console.log(greetingSender(name, day))
+console.log(greetingSender(name, day)) */
+
+
