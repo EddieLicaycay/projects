@@ -224,7 +224,7 @@ myKey = 22
 console.log( worstObjectEver[myKey])
 
 
-Iterating Objects with For...in Loop:
+Iterating Objects with For in Loop:
 ​Iterating over an object is as simple as creating a for...in loop. By default, the for...in loop iterates over every property of an object, giving you access to each key.
 
 Below we get back to the dog object from above, to show you a couple of examples on how to access both the keys and the values of object properties with that special type of loop.
@@ -392,5 +392,225 @@ for (key in unitedStates) {
   Austin
   29530000
   { name: 'Houston', population: 2326000 }
+
+Every array has a .length property which shows how many elements are in the array. And because we know that indexes run 'one-behind' compared to the element numbers, then we can use simple math to get to the last element's index:
+
+console.log(worldAuthors[ worldAuthors.length - 1 ]);
+
+Arrays
+var worldAuthors = ['Edgar Allan Poe', 'Fyodor Dostoevsky', 'J.R.R Tolkien', 'Homer', 'Victor Hugo'];
+console.log(worldAuthors.indexOf("Homer")) = 3
+console.log(worldAuthors[2]) = J.R.R Tolkien
+worldAuthors[0] = 'Miguel de Cervantes' = replaces 'Edgar Allan Poe' at index 0
+worldAuthors[7] = "Paulo Coelho"; = ['Miguel de Cervantes', 'Fyodor Dostoevsky', 'J.R.R Tolkien', 'Homer', 'Victor Hugo', empty item x2 , 'Paulo Coelho'] because you added at index 7
+worldAuthors.length = 8
+console.log(worldAuthors[ worldAuthors.length - 1 ]) = Paulo Coelho which is the last (- 1)
+
+For Loop
+The most basic approach to iterate over an array is by using a for loop:
+
+for(let index = 0; index < worldAuthors.length; index++){
+        console.log(worldAuthors[index]);
+    }
+For...of Loop
+The for loop works fine, but as you can see it is a bit verbose. Luckily JavaScript offers other loops. One loop statement often used with arrays is the for...of loop:
+
+    for(let element of worldAuthors){
+        console.log(element);
+    }
+
+Another example:
+let array = ['dog', 'cat', 'fish']
+for (let element of array) {
+    console.log(element)
+
+dog
+cat
+fish
+
+array.entries()
+for(let [index, animal] of array.entries()){
+    console.log(index, animal)
+}
+0 'dog'
+1 'cat'
+2 'fish'
+
+The push() and pop() methods:
+If you need to add an element to the end of an array you can use the method push():
+let cities = ["Ottawa"];
+cities.push("Bangkok");
+console.log(cities); // output: ["Ottawa", "Bangkok"]
+Similarly, if you need to remove "Bangkok" from the array you can just use cities.pop() which will automatically remove it, as this method always removes the very last element.
+
+The shift() and unshift() methods
+If adding or removing elements needs to happen at the front of the array, you can use unshift() and shift():
+let cities = ["Ottawa"];
+cities.unshift("Bangkok");
+console.log(cities); // output: ["Bangkok", "Ottawa"]
+cities.shift();
+console.log(cities); // output: ["Ottawa"]
+
+The splice() vs. slice() methods:
+The splice() method makes working with arrays much more flexible, as it allows us to add, remove and even replace elements at a specific index.
+
+The splice() method may take many arguments, but the core arguments are three:
+myArray.splice(index, deleteCount, element)
+-The index is where the changes in the array will start.
+-The deleteCount is how many elements will be deleted starting with index.
+-The element is the new element(s) that will be added starting at index.
+
+Let's see this at work with some examples:
+
+let cities = ["Ottawa"];
+cities.splice(1, 0, "Bangkok");
+//cities is now ["Ottawa", "Bangkok"]
+cities.splice(1, 1);
+//cities is now ["Ottawa"]
+cities.splice(0, 1, "Kathmandu", "Bangkok");
+//cities is now ["Kathmandu", "Bangkok"]
+
+There is another array method called slice() which could also be useful in extracting array elements, but don't let the similar sounding names fool you - the two methods work in very different ways:
+let phone = [0,1,2,3,4,5,6,7,8,9]
+phone.slice(0, 3) = [0, 1, 2]
+
+The concat() method
+There are times when we do not need to manipulate any of the array elements, but the arrays themselves. One frequently used array method to help with that is the concat() method.
+const array1 = ['a', 'b', 'c'];
+const array2 = ['d', 'e', 'f'];
+const array3 = array1.concat(array2);
+console.log(array3);
+// Expected output: Array ["a", "b", "c", "d", "e", "f"]
+const num1 = [1, 2, 3];
+const num2 = [4, 5, 6];
+const num3 = [7, 8, 9];
+const numbers = num1.concat(num2, num3);
+console.log(numbers);
+// results in [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+The join() method of Array instances creates and returns a new string by concatenating all of the elements in this array, separated by commas or a specified separator string.
+const elements = ['Fire', 'Air', 'Water'];
+
+console.log(elements.join());
+// Expected output: "Fire,Air,Water"
+console.log(elements.join(''));
+// Expected output: "FireAirWater"
+console.log(elements.join('-'));
+// Expected output: "Fire-Air-Water"
+console.log(elements.join(" "))
+//with space
+
+
+Nested Arrays
+Nested arrays, also called *multidimensional or matrix arrays are arrays that are comprised of other arrays as their elements.
+const apartments = [ ["001", "002", "003", "004", "005"], ["101", "102", "103", "104", "105"], ["201", "202", "203", '204', "205"], ["301", "302", "303", "304", "305"] ];
+
+to access specific number:
+console.log(apartments[1][2]) = "103"
+
+for(let index = 0; index < apartments.length; index++){
+    console.log(apartments[index]);
+}
+Output:
+['001', '002', '003', '004', '005']
+['101', '102', '103', '104', '105']
+['201', '202', '203', '204', '205']
+['301', '302', '303', '304', '305']
+
+for(let floorIndex = 0; floorIndex < apartments.length; floorIndex++){
+    for(let aptIndex = 0; aptIndex < apartments[floorIndex].length; aptIndex++){
+        apartments[floorIndex][aptIndex] = "A" + apartments[floorIndex][aptIndex];
+    }
+}
+console.log(apartments);
+Output:
+  [ 'A001', 'A002', 'A003', 'A004', 'A005' ],
+  [ 'A101', 'A102', 'A103', 'A104', 'A105' ],
+  [ 'A201', 'A202', 'A203', 'A204', 'A205' ],
+  [ 'A301', 'A302', 'A303', 'A304', 'A305' ]
+
+Complete the function called "computeAverageOfNumbers".
+Given an array of numbers, "computeAverageOfNumbers" returns their average of numbers inside the array.
+Notes:
+
+If given an empty array, it should return 0.
+To find the average of a list of numbers, add the numbers together and divide by the total amount of numbers
+var input = [1,2,3,4,5];
+var output = computeAverageOfNumbers(input);
+console.log(output); // --> 3
+
+function computeAverageOfNumbers(nums) {
+  // your code here
+  let sum = 0;
+
+  // Check if the array is empty
+  if (nums.length === 0) {
+    return 0;
+  }
+
+  // Calculate the sum of numbers
+  for (let i = 0; i < nums.length; i++) {
+    sum += nums[i];
+  }
+// divide for average num
+  let average = sum / nums.length;
+
+  return average;
+}
+var input = [1,2,3,4,5];
+var output = computeAverageOfNumbers(input);
+console.log(output); // --> 3
+
+Lexical scope is the concept that variables have limited availability. Conversely some programming languages use dynamic scoping where every variable is always available. In a JavaScript application, every value, variable, expression, etc. that is declared outside of a code block is said to live in the global scope of the application, and therefore is accessible throughout the entire application, in any section of the code, and in any other scope. The most obvious type of local scope is the block scope. Block scope is created by if statements, for loops and other similar statements. A "block" is any chunk of code that is bounded by {} and that block of code only lives within those curly braces. Anything inside curly braces is a block.
+
+Using Spread Operator:
+const user = {
+  id: 1,
+  username: "Eddie",
+  admin: true
+}
+
+to change input in the user's username, you could use the user.username = 'Eddie 2' to permanently change it.
+Using the .assign operator looks like this:
+const newUser = Object.assign(
+  {}, // this is creating an obj
+    user, // where we are pulling the data and changing
+      {username: "Eddie 2", admin: false} // what the actual change is
+)
+console.log(newUser) = { id: 1, username: 'Eddie 2', admin: false }
+
+now using spread operator: ... (three dots)
+const newUser = {
+  ...user, // ... means spread operator and user is where were getting the info and changes
+    username: "Eddie 3",
+    id: 3,
+    admin: !true
+}
+console.log(newUser)= { id: 3, username: 'Eddie 3', admin: false }
+
+Deleting object properties:
+The standard way to do it is:
+
+delete user.admin = user = {id: 1, username: "Eddie"}
+
+Remove properties using Destructing:
+let {id,...newUser} = user // the first part is what section of user you want to delete, second is creating newUser equals to user
+console.log(newUser) =  user = {  username: "Eddie", admin: true }
+
+You can make complete or partial deep copies of an array or an object with the spread operator (...):
+let dogObject = {
+  name: "Yori",
+  breed: "Dobermann",
+  color: "black"
+}
+//we assign catObject with a new object {} and place the contents
+//of dogObject inside of it with ...dogObject
+let catObject = { ...dogObject };
+catObject.name = "Pixie";
+catObject.breed = "Burmese";
+catObject.color = "brown";
+
+console.log("This should be a dog: ", dogObject);
+In essence the spread operator simply copies only the contents of an array or object.
 
 

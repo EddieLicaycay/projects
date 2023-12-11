@@ -114,10 +114,17 @@ for (var key in dog){
   for (var key in dog){
     console.log(dog[key])
   }
-    /* Expected Output
-    => "Chance"
-    => "German Shepherd"
-    => 100
-    */
+    //  Expected Output
+    // => "Chance"
+    // => "German Shepherd"
+    // => 100
+
+    // const arr = [];
+    // arr.push(1, [3, arr, 4], 2);
+    // console.log(arr)
+    // console.log(arr.join(";")); // 1;3,,4;2
+
+    // const apartments = [ ["001", "002", "003", "004", "005"], ["101", "102", "103", "104", "105"], ["201", "202", "203", '204', "205"], ["301", "302", "303", "304", "305"] ];
+
 
 
