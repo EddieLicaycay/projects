@@ -588,6 +588,17 @@ const newUser = {
 }
 console.log(newUser)= { id: 3, username: 'Eddie 3', admin: false }
 
+Adding array using spread operator:
+
+A function addCity takes an array of cities as an input, and outputs a copy of the array with one more city added to it - "Stockholm".
+For example, if the value of citiesArray is ["Madrid", "London"], the function should return ["Madrid", "London", "Stockholm"].
+
+const addCity = (citiesArray) => {
+  let newCities = [...citiesArray, "Stockholm"]; // ...citiesArray is where were adding "Stockholm"
+  return newCities;
+}
+
+
 Deleting object properties:
 The standard way to do it is:
 
@@ -610,7 +621,288 @@ catObject.name = "Pixie";
 catObject.breed = "Burmese";
 catObject.color = "brown";
 
+Refactor the following function to return a copy of the passed in object, using the spread operator:
+
+const updateAge = (object, age) => {
+  object.age = age;
+  return object;
+};
+Answer:
+const updateAge = (object, age) => {
+    return {...object, age}
+}
+
 console.log("This should be a dog: ", dogObject);
 In essence the spread operator simply copies only the contents of an array or object.
 
+Add Properties
+const clock = {
+  hours: 13,
+  minutes: 40,
+};
 
+const clone = {
+  ...clock,
+  seconds: 46,
+};
+// clock => { hours: 13, minutes: 40 }
+// clone => { hours: 13, minutes: 40, seconds: 46 }
+
+Change Properties
+const clock = {
+  hours: 13,
+  minutes: 40,
+  seconds: 23,
+};
+
+const clone = {
+  ...clock,
+  minutes: 12,
+};
+// clock => { hours: 13, minutes: 40, seconds: 23 }
+// clone => { hours: 13, minutes: 12, seconds: 23 }
+
+Delete Properties
+const clock = {
+  hours: 13,
+  minutes: 40,
+  seconds: 23,
+};
+
+const { seconds, ...clone } = clock;
+// clock => { hours: 13, minutes: 40, seconds: 23 }
+// clone => { hours: 13, minutes: 40
+
+
+Rest Parameters
+Note: The ... (rest) syntax is used in the parameters of a function. Take care not to confuse it with the spread operator, as they function differently.
+function printAnimals(singleParameter) {
+  console.log(singleParameter);
+}
+printAnimals("dog", "cat", "fish"); = dog
+
+
+function printAnimals(...mulipleParameters) { // using (rest) ... syntax allows a function to accept an indefinite and/or unknown number of arguments in the form of an array:
+  console.log(mulipleParameters);
+}
+printAnimals("dog", "cat", "fish"); = dog, cat, fish
+
+function printAnimals(...animals) {
+  for(let species of animals) console.log(species);
+}
+
+printAnimals("dog", "cat", "fish", "birds"); = dog, cat, fish, birds
+
+Destructuring Parameters:
+Instead of this:
+
+function (properties) {
+  return `Hello ${properties.firstName} ${properties.lastName}`
+}
+you can write with destructuring:
+
+function ({ firstName, lastName }) {
+  return `Hello ${firstName} ${lastName}`
+}
+
+in Arrow line:
+({ firstName, lastName }) => `Hello ${firstName} ${lastName}`;
+
+Default parameters:
+Default function parameters allow named parameters to be initialized with default values if no value or undefined is passed.
+Example
+function multiply(a, b = 2) {
+  return a * b;
+}
+
+console.log(multiply(5, 3)); // if parameter b is present, default b = 2 will not be activated therefor 5 * 3 = 15
+// Expected output: 15
+
+console.log(multiply(5)); // returns 10 because a = 5 * b = 2 since there is no b added = 10
+// Expected output: 10
+
+Parameters are still set left-to-right, overwriting default parameters even if there are later parameters without defaults.
+function f(x = 1, y) {
+  return [x, y];
+}
+f(); // [1, undefined]
+f(2); // [2, undefined]
+
+Higher Order Function
+Some of the HOF are: Array.forEach(), Array.map(), Array.filter(), Array.reduce(), Array.find()
+
+ForEach
+The forEach method invokes a higher-order function for each element of an array.
+var arr = [1, 2, 3, 4];
+
+arr.forEach(function(element) {
+  console.log(element);
+});
+Compare to a for..of loop:
+var arr = [1, 2, 3, 4];
+
+for (var element of arr) {
+  console.log(element);
+};
+const items = ["item1", "item2", "item3"];
+const copyItems = [];
+// before: using a regular for loop
+for (let i = 0; i < items.length; i++) {
+  copyItems.push(items[i]);
+}
+// after using .forEach
+items.forEach((item) => {
+  copyItems.push(item);
+  count++ // shows how many times the function iterated which will equal 3 at this case
+});
+
+
+Map (returns as array)
+The map method invokes a function for each element of an array, but allows each element to be transformed and pushed to a new array. In other words, the map method:
+
+Creates a new array that's the same size as the original array.
+Applies a function to each element of the original array.
+Pushes the return value of the function into the new array.
+EXAMPLE
+const arr = [1, 2, 3, 4];
+
+const squares = arr.map((element) => {
+  return element * element;
+});
+console.log(squares); // [1, 4, 9, 16]
+
+Compare this with the equivalent syntax of a for..of loop:
+const arr = [1, 2, 3, 4];
+
+const squares = [];
+for (let element of arr) {
+  squares.push(element * element);
+}
+console.log(squares); // [1, 4, 9, 16]
+
+Filter (returns as array)
+The filter method iterates over an existing array and allows us to filter (keep) only the elements from that array which pass a certain logical comparison (condition). The filter method automatically returns an array with only those elements.
+
+let names = ["Bob", "Tom", "Ben", "John", "Ted", "Todd"];
+
+let tNames = names.filter(name => name.charAt(0) == "T");
+
+console.log(tNames); // ["Tom", "Ted", "Todd"]
+
+In summary, the filter method:
+Creates a new array that's no larger than the original array.
+Applies a function to each element of the original array.
+Pushes the element into the new array if the function returns true.
+The function passed to the filter method is called a predicate, because its value will be true or false:
+
+const arr = [1, 2, 3, 4];
+
+const odds = arr.filter(element => {
+  return element % 2 !== 0;
+});
+
+console.log(odds); // [1, 3]
+
+Compare this with the equivalent syntax of a for..of loop:
+
+const arr = [1, 2, 3, 4];
+
+const odds = [];
+
+for (let element of arr) {
+  if (num % 2 !== 0) {
+    odds.push(element);
+  }
+}
+
+console.log(odds); // [1, 3]
+
+const words = ['spray', 'elite', 'exuberant', 'destruction', 'present'];
+const result = words.filter((word) => word.length > 6);
+console.log(result);
+// Expected output: Array ["exuberant", "destruction", "present"]
+
+Reduce
+EXAMPLE
+const array1 = [1, 2, 3, 4];
+
+// 0 + 1 + 2 + 3 + 4
+const initialValue = 0; // this will act as the initial value of whatever we are trying to add
+const sumWithInitial = array1.reduce((accumulator, currentValue) => accumulator + currentValue,initialValue);
+console.log(sumWithInitial);
+// Expected output: 10
+
+Chain Array's reduce, map, and filter methods (or at least two of them) to reduce the input array of student data to an average age of the entire class.
+const students = [
+    { name: "Stephen", age: 24 },
+    { name: "Alice", age: 19 },
+    { name: "Jordan", age: 29 },
+    { name: "Julie", age: 21 },
+    { name: "Chris", age: 26 }
+]
+let filteredAges = students.map((student) => student.age) // Extract ages
+.reduce((total, age) => total + age, 0) / students.length
+console.log(filteredAges) = 23.8
+
+
+Using Math.min() // math.min() returns the smallest value number
+
+console.log(Math.min(2, 3, 4));
+// Expected output: 2
+
+console.log(Math.min(-2, -3, -1));
+// Expected output: -3
+
+const array1 = [2, 3, 1];
+
+console.log(Math.min(...array1));
+// Expected output: 1
+
+DOM Manipulation
+For example, if you have an HTML document with a body looking like this:
+
+  <body>
+    <div id="myHello" class="myDivs">Hello</div>
+    <div id="myGoodbye" class="myDivs">Goodbye</div>
+  </body>
+you can select the first div element by writing:
+
+document.querySelector('#myHello')
+Now, find out what will be the result if you console log document.querySelector('.myDivs') and document.querySelectorAll('.myDivs') for the same HTML code above.
+
+NOTE - to select elements by id we use the symbol # in querySelector, and to select by class we use . - just like we do in our CSS stylesheet.
+document.querySelectorAll('.myDivs') = <div id="myHello" class="myDivs">Hello</div>, <div id="myGoodbye" class="myDivs">Goodbye</div>
+
+
+Types of Events
+There are many different types of events. They can be categorized on the basis of where and how they occurred.
+
+Some of the most common ones that you will need to use:
+Event	Description
+load	the moment when the entire page is loaded, including all dependent resources
+focus	when an element receives focus, e.g. when user navigates to an input field
+blur	when an element loses focus, for example when user navigates away from an input field
+click	when user clicks over an element
+change	when user changes the state of an input element, e.g. clicking on a checkbox, or focusing out of a text field
+input	when user changes the state of an input field - triggered with every key stroke
+keydown	when a key is pressed
+keyup	when a key is released
+mouseover	when pointing device moves the cursor onto an element or its children
+mouseout	when pointing device moves the cursor out of an element or its children
+contextmenu	when user opens a context menu, e.g. clicking the right mouse button or pressing context menu key
+submit	when a form gets submitted
+
+EXAMPLE of click event
+<!-- index.html -->
+<button id="button1">Click me!</button>
+
+// index.js
+let btn = document.querySelector('#button1');
+btn.addEventListener("click", () => alert('Button1 was clicked')) // this will alert when "Click me!" is clicked
+ or
+ // index.js
+let btn = document.querySelector('#button1');
+const myClickFunction = () => {
+    alert('Button1 was clicked')
+}
+btn.addEventListener("click", myClickFunction);
