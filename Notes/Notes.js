@@ -906,3 +906,146 @@ const myClickFunction = () => {
     alert('Button1 was clicked')
 }
 btn.addEventListener("click", myClickFunction);
+
+Asynchronous Scripting:
+
+//Callback
+let helloCaller = (callback) => callback('Hello')
+let Logger = (word) => console.log(word);
+helloCaller(Logger)
+
+//Synchronous Callbacks - run in web console
+const greeting = (name) => {
+  alert('Hello ' + name);
+}
+
+const processUserInput = (callback) => {
+  var name = prompt('Please enter your name.');
+  callback(name);
+}
+The above example is a synchronous callback, as it is executed immediately.
+
+
+processUserInput(greeting);
+
+setTimeout
+const messageToStudents = () => {
+  console.log("Hey Galvanize students!")
+}
+setTimeout(messageToStudents, 3000)
+const test = () => console.log('Do it for the learning!')
+setTimeout(test, 1000)
+
+example of implementing callback function
+const myMap = (array, callback) => {
+  let result =[]
+  for(let key of array){
+    result.push(callback(key))
+  }
+  return result;
+}
+const squareNumbers = number => number * number // in this case, this will be the callback function
+const numbers = [1,2,3,4,5] // will be the array
+
+const newArray = myMap(numbers, squareNumbers)
+console.log(newArray)
+
+
+Problem: (promise with .then and .catch)
+Assume signIn() returns a Promise that will eventually reject with an error.
+When all promises resolve, what will be the final value of result?
+
+let result = 5;
+
+signIn()
+  .then(() =>result += 5)
+  .catch(() => result += 10)
+  .then(() => result += 15)
+  .catch(() => result += 20);
+
+result = 10;
+// Answer: 35
+Initially, result is set to 5. Then, we have a Promise with a bunch of chained methods, and at the bottom we reassign the value of result to 10. result being set to 10 occurs BEFORE the Promise resolves, so when signIn() finally resolves, result = 10. Because signIn() rejects with an error, we jump to the catch block, which adds 10 to the existing value of result which is now 20, and then hit the then() block which adds 15, and because the next block is a catch(), the code returns out with 35 as the value.
+
+
+fetching todo with POST
+let todo = {
+    "userId": 4,
+    "title": "lets learn how to boogey ",
+    "completed": false
+}
+
+fetch('https://jsonplaceholder.typicode.com/todos', {
+    method: 'POST',
+    body: JSON.stringify(todo),
+    headers: { 'Content-Type': 'application/json'}
+}).then(response => response.json())
+    .then(data => console.log(data))
+
+output: {userId: 4, title: 'lets learn how to boogey ', completed: false, id: 201}completed: falseid: 201title: "lets learn how to boogey "userId: 4[[Prototype]]: Object
+
+
+// Class and Instance
+EXAMPLE:
+//Super class
+class Building {
+  constructor(numberOfFloors, yearLastInspected) {
+    this.numberOfFloors = numberOfFloors;
+    this.yearLastInspected = yearLastInspected;
+    this.specialActionNeeded = false;
+  }
+
+  addFloor() {
+    this.numberOfFloors += 1;
+  }
+
+  needsInspection() {
+    return this.specialActionNeeded || new Date().getFullYear() - this.yearLastInspected > 10;
+  }
+}
+
+//Subclass
+class Residential extends Building {
+  constructor(numberOfFloors, yearLastInspected, numberOfFamilies) {
+    super(numberOfFloors, yearLastInspected);
+    this.numberOfFamilies = numberOfFamilies;
+  }
+
+  familiesPerFloor() {
+    return this.numberOfFamilies / this.numberOfFloors;
+  }
+}
+
+//Subclass
+class Office extends Building {
+  constructor(numberOfFloors, yearLastInspected, numberOfOffices) {
+    super(numberOfFloors, yearLastInspected);
+    this.numberOfOffices = numberOfOffices;
+  }
+
+  addFloor() {
+    super.addFloor();
+    this.specialActionNeeded = true;
+  }
+
+  officesPerFloor() {
+    return this.numberOfOffices / this.numberOfFloors;
+  }
+}
+
+const myHouse = new Residential(2, 1986, 4);
+const empireState = new Office(102, 2014, 300);
+
+console.log(myHouse.numberOfFloors);         // 2
+console.log(myHouse.numberOfFamilies);       // 4
+console.log(myHouse.familiesPerFloor());     // 2
+console.log(myHouse.numberOfOffices);        // undefined
+
+console.log(empireState.numberOfFloors);     // 102
+console.log(empireState.numberOfOffices);    // 300
+console.log(empireState.officesPerFloor());  // 2.94...
+console.log(empireState.numberOfFamilies);   // undefined
+console.log(empireState.needsInspection());  // false
+console.log(empireState.addFloor());
+console.log(empireState.numberOfFloors);     // 103
+console.log(empireState.needsInspection());  // true
